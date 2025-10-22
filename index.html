@@ -50,14 +50,17 @@ function letterCount(word) {
   return JSON.stringify(counts, null, 2);
 }
 
-document.getElementById("fizzBtn").addEventListener("click", function() {
-  const n = parseInt(document.getElementById("fizzInput").value);
-  document.getElementById("fizzOutput").textContent = fizzBuzz(n);
-});
+// Add event listeners after page loads
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("fizzBtn").addEventListener("click", function() {
+    const n = parseInt(document.getElementById("fizzInput").value);
+    document.getElementById("fizzOutput").textContent = fizzBuzz(n);
+  });
 
-document.getElementById("letterBtn").addEventListener("click", function() {
-  const word = document.getElementById("letterInput").value;
-  document.getElementById("letterOutput").textContent = letterCount(word);
+  document.getElementById("letterBtn").addEventListener("click", function() {
+    const word = document.getElementById("letterInput").value;
+    document.getElementById("letterOutput").textContent = letterCount(word);
+  });
 });
 </script>
 
