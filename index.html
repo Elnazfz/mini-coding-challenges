@@ -2,10 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FizzBuzz</title>
+  <title>FizzBuzz & Letter Count</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input[type="number"], input[type="text"] {
+      padding: 8px;
+      width: 200px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #e8f0fe;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-  <h1>FizzBuzz Project</h1>
-  <script src="fizzbuzz.js"></script>
+
+  <h1>FizzBuzz & Letter Count</h1>
+
+  <!-- FizzBuzz Section -->
+  <div class="section">
+    <h2>FizzBuzz</h2>
+    <input type="number" id="fizzInput" placeholder="Enter a number (1-99)">
+    <button onclick="runFizzBuzz()">Run FizzBuzz</button>
+    <div class="output" id="fizzOutput"></div>
+  </div>
+
+  <!-- Letter Count Section -->
+  <div class="section">
+    <h2>Letter Count</h2>
+    <input type="text" id="letterInput" placeholder="Enter a word">
+    <button onclick="runLetterCount()">Count Letters</button>
+    <div class="output" id="letterOutput"></div>
+  </div>
+
+  <script>
+    // FizzBuzz function
+    function fizzBuzz(n) {
+      if (!Number.isInteger(n)  n < 1  n >= 100) {
+        return "Error: Enter a number between 1 and 99";
+      }
+
+      let output = [];
+      for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) output.push("FizzBuzz");
+        else if (i % 3 === 0) output.push("Fizz");
+        else if (i % 5 === 0) output.push("Buzz");
+        else output.push(i);
+      }
+      return output.join(", ");
+    }
+
+    // Letter Count function
+    function letterCount(word) {
+      if (typeof word !== "string" || !/^[a-zA-Z]+$/.test(word)) {
+        return "Error: Enter a valid word with only letters";
+      }
+
+      let counts = {};
+      for (let letter of word.toLowerCase()) {
+        counts[letter] = (counts[letter] || 0) + 1;
+      }
+      return JSON.stringify(counts, null, 2);
+    }
+
+    // Run FizzBuzz from input
+    function runFizzBuzz() {
+      const n = parseInt(document.getElementById("fizzInput").value);
+      const result = fizzBuzz(n);
+      document.getElementById("fizzOutput").textContent = result;
+    }
+
+    // Run Letter Count from input
+    function runLetterCount() {
+      const word = document.getElementById("letterInput").value;
+      const result = letterCount(word);
+      document.getElementById("letterOutput").textContent = result;
+    }
+  </script>
+
 </body>
 </html>
