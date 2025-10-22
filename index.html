@@ -30,8 +30,12 @@ button { padding: 8px 12px; cursor: pointer; }
 </div>
 
 <script>
+// FizzBuzz function
 function fizzBuzz(n) {
-  if (!Number.isInteger(n)  n < 1  n >= 100) return "Error: Enter a number between 1 and 99";
+  if (!Number.isInteger(n)  n < 1  n >= 100) {
+    return "Error: Enter a number between 1 and 99";
+  }
+
   let output = [];
   for (let i = 1; i <= n; i++) {
     if (i % 3 === 0 && i % 5 === 0) output.push("FizzBuzz");
@@ -42,15 +46,20 @@ function fizzBuzz(n) {
   return output.join(", ");
 }
 
+// Letter Count function
 function letterCount(word) {
-  if (typeof word !== "string" || !/^[a-zA-Z]+$/.test(word))
+  if (typeof word !== "string" || !/^[a-zA-Z]+$/.test(word)) {
     return "Error: Enter letters only";
+  }
+
   let counts = {};
-  for (let letter of word.toLowerCase()) counts[letter] = (counts[letter] || 0) + 1;
+  for (let letter of word.toLowerCase()) {
+    counts[letter] = (counts[letter] || 0) + 1;
+  }
   return JSON.stringify(counts, null, 2);
 }
 
-// Add event listeners after page loads
+// Add event listeners after DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("fizzBtn").addEventListener("click", function() {
     const n = parseInt(document.getElementById("fizzInput").value);
